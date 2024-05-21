@@ -3,7 +3,6 @@
     xmlns="sap.m">
     <Page id="listpage" title="{i18n>title}">
         <content>
-            <!-- <HBox id="placeholder"></HBox> -->
         </content>
     </Page>
 </mvc:View>

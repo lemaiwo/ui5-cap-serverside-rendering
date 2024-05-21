@@ -26,12 +26,12 @@ class CatalogService extends cds.ApplicationService {
     })
 
     this.on('READ', 'BooksUI', async req => {
-      const { book } = req.data
+      const { ID } = req.data
       let fragment = "BooksList";
       let data;
-      if (book) {
+      if (ID) {
         fragment = "BooksDetail";
-        data = await SELECT.from(Books, book);
+        data = await SELECT.from(Books, ID);
       }else{
         data = {Books:(await SELECT.from(Books))};
       }

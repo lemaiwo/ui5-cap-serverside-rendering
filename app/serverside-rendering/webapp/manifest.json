@@ -110,8 +110,14 @@
       },
       "routes": [
         {
-          "name": "RouteApp",
+          "name": "list",
           "pattern": ":?query:",
+          "target": [
+            "TargetApp"
+          ]
+        },{
+          "name": "detail",
+          "pattern": "book/{id}",
           "target": [
             "TargetApp"
           ]
