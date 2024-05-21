@@ -1,0 +1,9 @@
+<mvc:View controllerName="be.wl.serversiderendering.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="listpage" title="{i18n>title}">
+        <content>
+            <!-- <HBox id="placeholder"></HBox> -->
+        </content>
+    </Page>
+</mvc:View>
