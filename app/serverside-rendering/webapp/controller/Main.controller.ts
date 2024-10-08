@@ -19,32 +19,6 @@ export default class Main extends Controller {
 
     /*eslint-disable @typescript-eslint/no-empty-function*/
     public onInit() {
-		this.getRouter()?.getRoute("list")?.attachPatternMatched((event: Route$PatternMatchedEvent) => this.onListRouteMatched(event), this);
-		this.getRouter()?.getRoute("detail")?.attachPatternMatched((event: Route$PatternMatchedEvent) => this.onDetailRouteMatched(event), this);
-    }
-    public onListRouteMatched(event:Route$PatternMatchedEvent){
-        this.getFragment();
-    }
-    public onDetailRouteMatched(event:Route$PatternMatchedEvent){
-        const args = event.getParameter("arguments") as {id:string};
-        this.getFragment(args.id);
-    }
-    public async getFragment(id?:string) {
-        const model = this.getOwnerComponent()?.getModel() as ODataModel;
-        // const binding = model.bindContext("/BooksUI(0)/content");
-        // const result = await binding.requestObject();
-        const response = await fetch(`${model.getServiceUrl()}/BooksUI(${id?id:'0'})/content`);
-        const result = await response.text()
-        this.renderFragment(result);
-    }
-    private async renderFragment(result:string){
-        const fragment = await Fragment.load({
-            type: "XML",
-            definition: result,
-            controller:this
-        });
-        // put the Fragment content into the document
-        (fragment as Control).placeAt((this.byId("listpage") as Page),"only");
     }
     public onSelectedBook(event:ListBase$SelectionChangeEvent){
         const bookID = event.getParameter("listItem")?.getCustomData().find(customData => customData.getKey() === "ID")?.getValue();

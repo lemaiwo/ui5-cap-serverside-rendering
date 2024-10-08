@@ -100,7 +100,7 @@
     },
     "routing": {
       "config": {
-        "routerClass": "sap.m.routing.Router",
+        "routerClass": "be.wl.serversiderendering.ServerSideRouter",
         "viewType": "XML",
         "async": true,
         "viewPath": "be.wl.serversiderendering.view",
@@ -112,26 +112,13 @@
         {
           "name": "list",
           "pattern": ":?query:",
-          "target": [
-            "TargetApp"
-          ]
+          "url": "/odata/v4/catalog/BooksUI(0)/content"
         },{
           "name": "detail",
           "pattern": "book/{id}",
-          "target": [
-            "TargetApp"
-          ]
+          "url": "/odata/v4/catalog/BooksUI({id})/content"
         }
-      ],
-      "targets": {
-        "TargetApp": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "Main",
-          "viewName": "Main"
-        }
-      }
+      ]
     },
     "rootView": {
       "viewName": "be.wl.serversiderendering.view.App",

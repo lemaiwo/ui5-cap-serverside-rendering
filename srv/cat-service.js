@@ -35,7 +35,8 @@ class CatalogService extends cds.ApplicationService {
       }else{
         data = {Books:(await SELECT.from(Books))};
       }
-      const filedata = fs.readFileSync(path.join(__dirname, './fragments', `${fragment}.fragment.xml`));
+      // const filedata = fs.readFileSync(path.join(__dirname, './fragments', `${fragment}.fragment.xml`));
+      const filedata = fs.readFileSync(path.join(__dirname, './views', `${fragment}.view.xml`));
       const template = Handlebars.compile(filedata.toString());
       const result = template(data);
       const readableInstanceStream = new Readable({
