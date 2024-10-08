@@ -27,14 +27,19 @@ class CatalogService extends cds.ApplicationService {
 
     this.on('READ', 'BooksUI', async req => {
       const { ID } = req.data
-      let fragment = "BooksList";
-      let data;
-      if (ID) {
-        fragment = "BooksDetail";
-        data = await SELECT.from(Books, ID);
-      }else{
-        data = {Books:(await SELECT.from(Books))};
-      }
+
+      const pathEntity = req.query.SELECT.from.ref[0].id;
+      const entity = pathEntity.substring(pathEntity.indexOf(".")+1,pathEntity.indexOf("UI"));
+
+      let fragment = `${entity}${ID?"Detail":"List"}`;
+
+      let query = SELECT.from(req.tx.entities('sap.capire.bookshop')[entity]);
+      ID && query.where({ID:ID});
+      const queryResult = await query;
+
+      let data={};
+      ID?([data]=queryResult):(data[entity] = queryResult)
+     
       // const filedata = fs.readFileSync(path.join(__dirname, './fragments', `${fragment}.fragment.xml`));
       const filedata = fs.readFileSync(path.join(__dirname, './views', `${fragment}.view.xml`));
       const template = Handlebars.compile(filedata.toString());
