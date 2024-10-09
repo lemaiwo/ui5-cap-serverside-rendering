@@ -36,6 +36,7 @@ class CatalogService extends cds.ApplicationService {
       let query = SELECT.from(req.tx.entities('sap.capire.bookshop')[entity]);
       ID && query.where({ID:ID});
       const queryResult = await query;
+      
 
       let data={};
       ID?([data]=queryResult):(data[entity] = queryResult)
