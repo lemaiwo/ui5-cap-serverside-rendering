@@ -4,7 +4,7 @@
 	xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
     xmlns="sap.m">
-    <Page id="listpage" title="{i18n>title}">
+    <Page id="detailpage" title="{i18n>title}">
         <content>
             <f:SimpleForm         editable="true"
                 layout="ResponsiveGridLayout"
